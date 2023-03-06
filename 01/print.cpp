@@ -1,7 +1,5 @@
 #include "print.h"
 
-
-
 void PrintArray(int* arr, const int arrSize)
 {
     std::cout << "Исходный массив:";
@@ -11,95 +9,53 @@ void PrintArray(int* arr, const int arrSize)
         std::cout << " ";
         std::cout << arr[i];
     };
-
     std::cout << std::endl;
 };
 
-
-void PrintPiramid(int* arr, const int arrSize)
+int PyramidLevelNow(int* levelOfpyramid, const int countLevelsOfPyramid, int i)
 {
-    int piramidLevelNow = 0;
+    for (int j = 0; j < countLevelsOfPyramid; j++)
+    {
+        if (i < levelOfpyramid[j])
+        {
+            return j + 1;
+        }
+    };
+    return 1;
+};
+
+void PrintPyramid(int* arr, const int arrSize)
+{
+    int pyramidLevelNow = 0;
 
     std::cout << "Пирамида:\n";
-    std::cout << "piramidLevelNow: " << piramidLevelNow << std::endl;
-
-    std::cout << "Уровень: " << piramidLevelNow++ << ". Root. Значение: " << arr[0] << std::endl;
-    //std::cout << "Уровень: " << piramidLevelNow << ". Left(" << arr[0] << ")" << ". Значение: " << arr[1] << std::endl;
-    //std::cout << "Уровень: " << piramidLevelNow << ". Right(" << arr[0] << ")" << ". Значение: " << arr[2] << std::endl;
+    std::cout << "Уровень: " << pyramidLevelNow << ". Root. Значение: " << arr[0] << std::endl;
         
-    int levelsOfPiramid = arrSize / log2(arrSize);
+    int countLevelsOfPyramid = log2(arrSize) + 1;
+    int* levelOfpyramid = new int[countLevelsOfPyramid];
 
-    std::cout << "levelsOfPiramid: " << levelsOfPiramid << std::endl;
-
-    //std::cout << "piramidLevelNow: " << piramidLevelNow << std::endl;
-    
-    int count = piramidLevelNow;
-    
-    int count2 = arrSize;
-     
-    for (int i = 0; i <= count2 / 2 ; i++)
+    // Заполняем массив конечными числами уровней пирамиды
+    for (int i = 0; i < countLevelsOfPyramid; i++)
     {
-        if (count2 > 1)
-        {
-            std::cout << "Уровень: " << piramidLevelNow << ". Left(" << arr[i] << ")" << ". Значение: " << arr[2 * i + 1] << std::endl;
-            //count2 -= 1;
-        }
-        if (count2 > 1)
-        {
-        std::cout << "Уровень: " << piramidLevelNow << ". Right(" << arr[i] << ")" << ". Значение: " << arr[2 * i + 2] << std::endl;
-        //count2 -= 1;
-        }
-
-
+        levelOfpyramid[i] = pow(2, i);
     }
 
+    for (int i = 0; i < arrSize ; i++)
+    {
+        int indexLeft = 2 * i + 1;
+        if (indexLeft < arrSize)
+        {
+            std::cout << "Уровень: " << PyramidLevelNow(levelOfpyramid, countLevelsOfPyramid, i) << ". Left(" << arr[i] << ")" << ". Значение: " << arr[2 * i + 1] << std::endl;
+        }
 
-
-
-
-
-
-
-
-
-
-    
-    //do
-    //{
-    //    std::cout << "piramidLevelNow: " << piramidLevelNow << std::endl;
-
-
-    //    int kkk = std::pow(2, piramidLevelNow);
-
-
-
-
-    //    for (int i = 0; i < kkk; ++i)
-    //    {
-    //        
-    //        
-
-    //        //while (kkk > 1)
-    //        //{
-    //            std::cout << "Уровень: " << piramidLevelNow << ". Left(" << arr[(i - 1) / 2] << ")" << ". Значение: " << arr[2 * i + 1] << std::endl;
-
-    //            std::cout << "Уровень: " << piramidLevelNow << ". Right(" << arr[(i - 2) / 2] << ")" << ". Значение: " << arr[2 * i + 2] << std::endl;
-    //            kkk--;
-    //       // }
-    //     
-
-
-
-
-    //    };
-    //    piramidLevelNow++;
-
-    //} while (piramidLevelNow <= levelsOfPiramid);
-
-    
-    
+        int indexRight = 2 * i + 2;
+        if (indexRight < arrSize)
+        {
+            std::cout << "Уровень: " << PyramidLevelNow(levelOfpyramid, countLevelsOfPyramid, i) << ". Right(" << arr[i] << ")" << ". Значение: " << arr[2 * i + 2] << std::endl;
+        }
+    }
     std::cout << std::endl;
 
-
-
+    delete[] levelOfpyramid;
+    levelOfpyramid = nullptr;
 };

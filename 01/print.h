@@ -4,4 +4,4 @@
 
 void PrintArray(int* arr, const int arrSize);
 
-void PrintPiramid(int* arr, const int arrSize);
+void PrintPyramid(int* arr, const int arrSize);
