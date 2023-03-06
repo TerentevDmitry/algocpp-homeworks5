@@ -1,5 +1,6 @@
 #include "print.h"
 
+//Печать исходного массива
 void PrintArray(int* arr, const int arrSize)
 {
     std::cout << "Исходный массив:";
@@ -12,6 +13,7 @@ void PrintArray(int* arr, const int arrSize)
     std::cout << std::endl;
 };
 
+//Определение на каком уровне тот или иной индекс пирамиды
 int PyramidLevelNow(int* levelOfpyramid, const int countLevelsOfPyramid, int i)
 {
     for (int j = 0; j < countLevelsOfPyramid; j++)
@@ -21,15 +23,16 @@ int PyramidLevelNow(int* levelOfpyramid, const int countLevelsOfPyramid, int i)
             return j + 1;
         }
     };
-    return 1;
+    return EXIT_FAILURE;
 };
 
+//Печать пирамиды
 void PrintPyramid(int* arr, const int arrSize)
 {
-    //int pyramidLevelNow = 0;
+    
 
     std::cout << "Пирамида:\n";
-    std::cout << "Уровень: 0. Root. Значение: " << arr[0] << std::endl;
+    std::cout << "Уровень: 0. Root.\tЗначение: " << arr[0] << std::endl;
         
     int countLevelsOfPyramid = log2(arrSize) + 1;
     int* levelOfpyramid = new int[countLevelsOfPyramid];
@@ -45,13 +48,13 @@ void PrintPyramid(int* arr, const int arrSize)
         int indexLeft = 2 * i + 1;
         if (indexLeft < arrSize)
         {
-            std::cout << "Уровень: " << PyramidLevelNow(levelOfpyramid, countLevelsOfPyramid, i) << ". Left(" << arr[i] << ")" << ". Значение: " << arr[2 * i + 1] << std::endl;
+            std::cout << "Уровень: " << PyramidLevelNow(levelOfpyramid, countLevelsOfPyramid, i) << ". Left(" << arr[i] << ")" << ".\tЗначение: " << arr[2 * i + 1] << std::endl;
         }
 
         int indexRight = 2 * i + 2;
         if (indexRight < arrSize)
         {
-            std::cout << "Уровень: " << PyramidLevelNow(levelOfpyramid, countLevelsOfPyramid, i) << ". Right(" << arr[i] << ")" << ". Значение: " << arr[2 * i + 2] << std::endl;
+            std::cout << "Уровень: " << PyramidLevelNow(levelOfpyramid, countLevelsOfPyramid, i) << ". Right(" << arr[i] << ")" << ".\tЗначение: " << arr[2 * i + 2] << std::endl;
         }
     }
     std::cout << std::endl;

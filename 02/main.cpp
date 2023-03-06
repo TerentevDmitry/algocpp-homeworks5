@@ -1,22 +1,18 @@
 ﻿// 5. Домашнее задание к занятию «Пирамиды и деревья поиска»
-// Задача 1. Вывод пирамиды на массиве
-// Вам нужно реализовать на консоль функцию вывода целочисленной пирамиды, реализованной на массиве.
+// Задача 2. «Путешествие» по пирамиде Вам нужно организовать «путешествие» пользователя по пирамиде.
+// Дан массив, в котором хранится пирамида. Ваша задача — дать пользователю возможность «путешествовать» по ней.
 
 #include <iostream>
 #include "print.h"
+#include "journeyThroughThePyramid.h"
+
 
 int main()
 {
     setlocale(LC_ALL, "Russian");
     std::srand(std::time(nullptr)); // Начальное значение для генератора случайных чисел
 
-    int arrSize = 3 + rand() % 17;
-    
-    //int arr[] = { 1, 3, 6, 5, 9, 8 };
-    
-    //int arr[] = {94, 67, 18, 44, 55, 12, 6, 42};
-    //int arr[] = {16, 11, 9, 10, 5, 6, 8, 1, 2, 4};
-    //int arrSize = std::size(arr);
+    int arrSize = 5 + rand() % 21;
 
     //Создаем массив
     int* arr = new int[arrSize] {};
@@ -26,10 +22,17 @@ int main()
     {
         arr[i] = rand() % 55;
     }
+
+
+
+
+
     
     PrintArray(arr, arrSize);
     PrintPyramid(arr, arrSize);
-    
+
+    journeyThroughThePyramid(arr, arrSize);
+
     delete[] arr;  // Удаляем массив
     arr = nullptr;  
 }
