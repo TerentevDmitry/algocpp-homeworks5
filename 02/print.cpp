@@ -13,6 +13,34 @@ void PrintArray(int* arr, const int arrSize)
     std::cout << std::endl;
 };
 
+//
+//int root(int* arr, const int arrSize)
+//{
+//    return arr[0];
+//}
+//
+//int fromIndex(int* arr, const int arrSize, const int index)
+//{
+//    return arr[index];
+//}
+//
+//int leftIndex(const int parentIndex)
+//{
+//    return 2 * parentIndex + 1;
+//}
+//
+//int rightIndex(const int parentIndex)
+//{
+//    return 2 * parentIndex + 2;
+//}
+//
+//int parentIndex(int childIndex)
+//{
+//    return (childIndex - 1) / 2;
+//}
+
+
+
 //Определение на каком уровне тот или иной индекс пирамиды
 int PyramidLevelNow(int* levelOfpyramid, const int countLevelsOfPyramid, int i)
 {
@@ -27,15 +55,14 @@ int PyramidLevelNow(int* levelOfpyramid, const int countLevelsOfPyramid, int i)
 };
 
 //Печать пирамиды
-void PrintPyramid(int* arr, const int arrSize)
+void PrintPyramid(int* arr, const int arrSize, int* levelOfpyramid, const int countLevelsOfPyramid)
 {
     
 
     std::cout << "Пирамида:\n";
     std::cout << "Уровень: 0. Root.\tЗначение: " << arr[0] << std::endl;
         
-    int countLevelsOfPyramid = log2(arrSize) + 1;
-    int* levelOfpyramid = new int[countLevelsOfPyramid];
+ 
 
     // Заполняем массив конечными числами уровней пирамиды
     for (int i = 0; i < countLevelsOfPyramid; i++)
@@ -58,7 +85,4 @@ void PrintPyramid(int* arr, const int arrSize)
         }
     }
     std::cout << std::endl;
-
-    delete[] levelOfpyramid;
-    levelOfpyramid = nullptr;
 };
